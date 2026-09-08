@@ -22,6 +22,11 @@ DRILLS = (
     "beacon.drills.jumpdrill",
     "beacon.drills.phidrill",
     "beacon.drills.vectordrill",
+    "beacon.drills.bloomdrill",
+    "beacon.drills.sketchdrill",
+    "beacon.drills.cardinalitydrill",
+    "beacon.drills.heavyhitterdrill",
+    "beacon.drills.samplingdrill",
 )
 
 
