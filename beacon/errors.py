@@ -33,3 +33,7 @@ class Refused(BeaconError):
 
 class Lagging(BeaconError):
     """The watcher has fallen off the retained window."""
+
+
+class Fenced(BeaconError):
+    """A stale writer acted after losing its lease token."""
