@@ -1,14 +1,17 @@
 from __future__ import annotations
 
 from examples import (
+    concurrencyday,
     consensusday,
     convergenceday,
     discoveryday,
     edgeday,
+    electionday,
     firstzone,
     outagenight,
     resilienceday,
     secureday,
+    storageday,
 )
 
 
@@ -123,6 +126,41 @@ class TestConvergenceDay:
         assert "read repair keeps new v5, repairs ['r1', 'r3']" in out
         assert "sends only the deltas the peer lacks: ['n2']" in out
         assert "no newest version to repair toward" in out
+
+
+class TestStorageDay:
+    def test_the_day_reads_end_to_end(self, capsys):
+        assert storageday.main() == 0
+        out = capsys.readouterr().out
+        assert "crash replays ['set b=2']" in out
+        assert "third write says flush-due" in out
+        assert "write amp 40, read amp 4" in out
+        assert "30s tombstone risks resurrection = True" in out
+        assert "replays 6000 records" in out
+        assert "cannot apply to index 5" in out
+
+
+class TestConcurrencyDay:
+    def test_the_day_reads_end_to_end(self, capsys):
+        assert concurrencyday.main() == 0
+        out = capsys.readouterr().out
+        assert "the race loser aborted; value stays from-a" in out
+        assert "shared+shared = True, shared+exclusive = False" in out
+        assert "deadlock = True, cycle ['t1', 't2', 't3']" in out
+        assert "older requester -> wait, younger requester -> die" in out
+        assert "a snapshot at 15 reads v1" in out
+        assert "two transactions share a timestamp" in out
+
+
+class TestElectionDay:
+    def test_the_day_reads_end_to_end(self, capsys):
+        assert electionday.main() == 0
+        out = capsys.readouterr().out
+        assert "no higher node -> win" in out
+        assert "leader of [2,7,4] is 7" in out
+        assert "ring election of [3,7,1,5] elects 7" in out
+        assert "an epoch-0 op after the bump is fenced = True" in out
+        assert "the ring has duplicate ids" in out
 
 
 class TestFirstZone:
