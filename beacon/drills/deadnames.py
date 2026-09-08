@@ -17,6 +17,8 @@ yes.
 
 from __future__ import annotations
 
+import contextlib
+
 from beacon.drills.finding import Finding
 from beacon.errors import Missing
 from beacon.names import Name
@@ -52,15 +54,11 @@ def run() -> Finding:
     resolver = _fresh_resolver()
     ghost = Name.parse("decommissioned.example.com")
     for tick in range(0, 120, 4):
-        try:
+        with contextlib.suppress(Missing):
             resolver.resolve(ghost, "A", now=tick)
-        except Missing:
-            pass
     first_window_queries = resolver.upstream_total
-    try:
+    with contextlib.suppress(Missing):
         resolver.resolve(ghost, "A", now=120)
-    except Missing:
-        pass
     after_expiry_queries = resolver.upstream_total
     numbers = {
         "asks_in_window": 30,
