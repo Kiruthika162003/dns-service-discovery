@@ -11,6 +11,7 @@ DRILLS = (
     "beacon.drills.ringmath",
     "beacon.drills.jitterwall",
     "beacon.drills.overlapproof",
+    "beacon.drills.coldstartdrill",
 )
 
 
