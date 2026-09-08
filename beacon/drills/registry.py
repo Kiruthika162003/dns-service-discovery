@@ -17,6 +17,11 @@ DRILLS = (
     "beacon.drills.hedgedrill",
     "beacon.drills.panicdrill",
     "beacon.drills.circuitdrill",
+    "beacon.drills.crdtdrill",
+    "beacon.drills.merkledrill",
+    "beacon.drills.jumpdrill",
+    "beacon.drills.phidrill",
+    "beacon.drills.vectordrill",
 )
 
 
