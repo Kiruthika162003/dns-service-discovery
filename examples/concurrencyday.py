@@ -1,4 +1,4 @@
-"""The concurrency day: an optimistic write loses a race, a deadlock is caught, a reader sees a snapshot.
+"""The concurrency day: an optimistic write loses a race, a deadlock is caught.
 
 Run with: python -m examples.concurrencyday
 """

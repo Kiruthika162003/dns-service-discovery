@@ -1,4 +1,4 @@
-"""The election day: a leader is chosen, exclusive access is granted in turn, a stale era is fenced.
+"""The election day: a leader is chosen, access is granted in turn, a stale era is fenced.
 
 Run with: python -m examples.electionday
 """

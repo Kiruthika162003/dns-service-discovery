@@ -1,4 +1,4 @@
-"""The storage day: a write survives a crash, buffers to a sorted flush, and a delete stays dead.
+"""The storage day: a write survives a crash, buffers to a sorted flush, a delete stays dead.
 
 Run with: python -m examples.storageday
 """
