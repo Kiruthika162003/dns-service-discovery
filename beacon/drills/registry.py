@@ -10,6 +10,7 @@ DRILLS = (
     "beacon.drills.deadnames",
     "beacon.drills.ringmath",
     "beacon.drills.jitterwall",
+    "beacon.drills.overlapproof",
 )
 
 
