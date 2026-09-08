@@ -8,6 +8,7 @@ from beacon.drills.finding import Finding
 
 DRILLS = (
     "beacon.drills.deadnames",
+    "beacon.drills.ringmath",
 )
 
 
