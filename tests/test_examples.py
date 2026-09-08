@@ -1,6 +1,23 @@
 from __future__ import annotations
 
-from examples import discoveryday, firstzone, outagenight
+from examples import (
+    discoveryday,
+    edgeday,
+    firstzone,
+    outagenight,
+)
+
+
+class TestEdgeDay:
+    def test_the_day_reads_end_to_end(self, capsys):
+        assert edgeday.main() == 0
+        out = capsys.readouterr().out
+        assert "big: 60% -> 45%" in out
+        assert (
+            "the worst failover is eu -> us at 100% of capacity"
+        ) in out
+        assert "blind spread 28, two-choice spread 3" in out
+        assert "kept 1, discarded 1 out-of-district" in out
 
 
 class TestOutageNight:
