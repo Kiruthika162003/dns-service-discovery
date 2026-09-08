@@ -1,6 +1,25 @@
 from __future__ import annotations
 
-from examples import discoveryday, firstzone
+from examples import discoveryday, firstzone, outagenight
+
+
+class TestOutageNight:
+    def test_the_night_reads_end_to_end(self, capsys):
+        assert outagenight.main() == 0
+        out = capsys.readouterr().out
+        assert "FAILOVER to us-east" in out
+        assert "at +120: 20, the floor" in out
+        assert "[STALE, expired 60 tick(s) ago]" in out
+        assert "1 refusal(s) avoided, 60 age-tick(s)" in out
+        assert "declared steps, not a cliff" in out
+        assert "1 query(ies) not sent during backoff" in out
+        assert (
+            "PRESERVING: 55 renewals against a floor of 85"
+        ) in out
+        assert (
+            "FAILBACK to eu-west after holding recovery 25"
+        ) in out
+        assert "gone. has nothing even stale" in out
 
 
 class TestDiscoveryDay:
