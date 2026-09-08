@@ -5,7 +5,33 @@ from examples import (
     edgeday,
     firstzone,
     outagenight,
+    secureday,
 )
+
+
+class TestSecureDay:
+    def test_the_day_reads_end_to_end(self, capsys):
+        assert secureday.main() == 0
+        out = capsys.readouterr().out
+        assert (
+            "trust chain intact through 3 zone(s) to the "
+            "trusted root ."
+        ) in out
+        assert "STALE LINK: shop.com. rotated its key" in out
+        assert (
+            "old key retired; no cache holds a signature it "
+            "cannot check"
+        ) in out
+        assert "a safe rollover at ttl 30 takes at least 60" in (
+            out
+        )
+        assert (
+            "traditionally 4 server(s) learned the full name, "
+            "minimization leaves 1"
+        ) in out
+        assert (
+            "6 distinct length(s) collapse to 3, spending 306"
+        ) in out
 
 
 class TestEdgeDay:
