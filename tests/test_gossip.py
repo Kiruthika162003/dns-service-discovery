@@ -48,7 +48,7 @@ class TestRefutation:
     def test_the_obituary_is_answered_with_a_new_incarnation(self):
         chosen = view()
         chosen.probe_missed("node-a", now=10)
-        incarnation, verdict = chosen.refute_own_death(now=12)
+        incarnation, verdict = chosen.refute_own_death()
         assert incarnation == 1
         assert "newer testimony beats older" in verdict
         assert chosen.beliefs["node-a"].state == "alive"

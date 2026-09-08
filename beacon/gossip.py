@@ -79,7 +79,7 @@ class MemberView:
                 )
         return declared
 
-    def refute_own_death(self, now: int) -> tuple[int, str]:
+    def refute_own_death(self) -> tuple[int, str]:
         belief = self._held(self.owner)
         belief.incarnation += 1
         belief.state = "alive"
