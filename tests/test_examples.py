@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 from examples import (
+    consensusday,
+    convergenceday,
     discoveryday,
     edgeday,
     firstzone,
     outagenight,
+    resilienceday,
     secureday,
 )
 
@@ -80,6 +83,46 @@ class TestDiscoveryDay:
         assert (
             "no service named anything was ever registered"
         ) in out
+
+
+class TestConsensusDay:
+    def test_the_day_reads_end_to_end(self, capsys):
+        assert consensusday.main() == 0
+        out = capsys.readouterr().out
+        assert "prevote: 3 grants, election allowed = True" in out
+        assert "vote granted = True in term 5" in out
+        assert "follower log [1, 1, 2] -> [1, 1, 3, 3]" in out
+        assert "index advances to 6 on a majority" in out
+        assert "linearizable read: serve" in out
+        assert "joint majority across old and new = True" in out
+        assert "send-timeout-now to a caught-up successor" in out
+        assert "leadership is not freshly confirmed" in out
+
+
+class TestResilienceDay:
+    def test_the_day_reads_end_to_end(self, capsys):
+        assert resilienceday.main() == 0
+        out = capsys.readouterr().out
+        assert "breaker open blocks = True, probe at cooldown = True" in out
+        assert "fixed 3x loads 3000, budget loads 1210" in out
+        assert "hedge fires on 5%, tail 125ms" in out
+        assert "the shed order is ['low', 'normal', 'high']" in out
+        assert "db saturated, cache still open: ['db']" in out
+        assert "2 of 10 healthy: panic routes to all 10" in out
+        assert "ghost has no compartment" in out
+
+
+class TestConvergenceDay:
+    def test_the_day_reads_end_to_end(self, capsys):
+        assert convergenceday.main() == 0
+        out = capsys.readouterr().out
+        assert "version vectors say: concurrent" in out
+        assert "PN-counter converges to 12 either merge order" in out
+        assert "add-wins over concurrent remove = True" in out
+        assert "merkle found ['k100'] in 17 comparisons of 256" in out
+        assert "read repair keeps new v5, repairs ['r1', 'r3']" in out
+        assert "sends only the deltas the peer lacks: ['n2']" in out
+        assert "no newest version to repair toward" in out
 
 
 class TestFirstZone:
