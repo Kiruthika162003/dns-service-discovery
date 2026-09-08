@@ -12,6 +12,11 @@ DRILLS = (
     "beacon.drills.jitterwall",
     "beacon.drills.overlapproof",
     "beacon.drills.coldstartdrill",
+    "beacon.drills.maglevdrill",
+    "beacon.drills.retrystormdrill",
+    "beacon.drills.hedgedrill",
+    "beacon.drills.panicdrill",
+    "beacon.drills.circuitdrill",
 )
 
 

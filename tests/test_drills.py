@@ -10,7 +10,7 @@ class TestTheRegistry:
 
     def test_the_report_ends_with_the_tally(self):
         report = registry.report()
-        assert report.splitlines()[-1] == "5 drills, 0 broken"
+        assert report.splitlines()[-1] == "10 drills, 0 broken"
 
     def test_findings_carry_their_numbers(self):
         for finding in registry.all_findings():
@@ -22,7 +22,7 @@ class TestTheCli:
     def test_summary_is_one_line(self, capsys):
         assert main(["summary"]) == 0
         assert capsys.readouterr().out.strip() == (
-            "5 drills (0 broken)"
+            "10 drills (0 broken)"
         )
 
     def test_check_says_all_hold(self, capsys):
