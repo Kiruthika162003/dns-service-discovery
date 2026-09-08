@@ -29,3 +29,7 @@ class Expired(BeaconError):
 
 class Refused(BeaconError):
     """The server will not answer this asker about this zone."""
+
+
+class Lagging(BeaconError):
+    """The watcher has fallen off the retained window."""
