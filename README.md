@@ -132,5 +132,3 @@ tests/           one test file per module
 
 This is a learning repository. Read it, run it, take the pieces that are
 useful, and check the numbers for yourself.
-
-Written by Kiruthika Subramani in collaboration with Claude, Anthropic's AI assistant.
